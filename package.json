@@ -1,0 +1,50 @@
+{
+  "name": "gatsby-plugin-watermark",
+  "version": "1.0.0",
+  "description": "A Gatsby plugin that adds configurable watermarks to images during transformation",
+  "main": "dist/gatsby-node.js",
+  "types": "dist/gatsby-node.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin",
+    "watermark",
+    "image",
+    "sharp",
+    "typescript"
+  ],
+  "author": "styfrombrest",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/styfrombrest/gatsby-plugin-watermark.git"
+  },
+  "bugs": {
+    "url": "https://github.com/styfrombrest/gatsby-plugin-watermark/issues"
+  },
+  "homepage": "https://github.com/styfrombrest/gatsby-plugin-watermark#readme",
+  "dependencies": {
+    "sharp": "^0.32.1",
+    "gatsby-plugin-sharp": "^5.14.0",
+    "gatsby-source-filesystem": "^5.14.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.24",
+    "@types/sharp": "^0.32.0",
+    "typescript": "^5.3.3"
+  },
+  "peerDependencies": {
+    "gatsby": "^5.0.0"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
