@@ -30,7 +30,8 @@
   "dependencies": {
     "sharp": "^0.32.1",
     "gatsby-plugin-sharp": "^5.14.0",
-    "gatsby-source-filesystem": "^5.14.0"
+    "gatsby-source-filesystem": "^5.14.0",
+    "file-loader": "^6.2.0"
   },
   "devDependencies": {
     "@types/node": "^20.11.24",

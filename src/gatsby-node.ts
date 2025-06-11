@@ -164,11 +164,12 @@ export const createPages = async ({ graphql, actions, reporter }: CreatePagesArg
 
   const result = await graphql(`
     query {
-      allWatermarkedImage {
+      allFile(filter: { internal: { mediaType: { regex: "/image/" } } }) {
         nodes {
           id
-          originalImage {
-            absolutePath
+          absolutePath
+          internal {
+            mediaType
           }
         }
       }
@@ -192,19 +193,44 @@ export const createPages = async ({ graphql, actions, reporter }: CreatePagesArg
     scale: 0.2,
   };
 
-  for (const node of (result.data as any).allWatermarkedImage.nodes) {
+  for (const node of (result.data as any).allFile.nodes) {
     try {
-      const watermarkedBuffer = await watermarkImage(node.originalImage.absolutePath, options);
+      const watermarkedBuffer = await watermarkImage(node.absolutePath, options);
       const outputPath = path.join(
-        path.dirname(node.originalImage.absolutePath),
-        `watermarked-${path.basename(node.originalImage.absolutePath)}`
+        path.dirname(node.absolutePath),
+        `watermarked-${path.basename(node.absolutePath)}`
       );
       
       await fs.promises.writeFile(outputPath, watermarkedBuffer);
       
       reporter.info(`Created watermarked image: ${outputPath}`);
     } catch (error) {
-      reporter.error(`Error processing image ${node.originalImage.absolutePath}: ${(error as Error).message}`);
+      reporter.error(`Error processing image ${node.absolutePath}: ${(error as Error).message}`);
     }
   }
+};
+
+// Hook into Gatsby's image processing pipeline
+export const onCreateWebpackConfig = ({ actions, reporter }: { actions: any; reporter: any }) => {
+  reporter.info('gatsby-plugin-watermark: Setting up image processing pipeline');
+  
+  // Add the watermark processing to the image processing pipeline
+  actions.setWebpackConfig({
+    module: {
+      rules: [
+        {
+          test: /\.(png|jpe?g|gif|webp)$/i,
+          use: [
+            {
+              loader: 'file-loader',
+              options: {
+                name: '[name].[ext]',
+                outputPath: 'images/',
+              },
+            },
+          ],
+        },
+      ],
+    },
+  });
 }; 

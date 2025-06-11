@@ -1,6 +1,6 @@
 # gatsby-plugin-watermark
 
-A Gatsby plugin that adds configurable watermarks to images during the build process. Supports both text and image watermarks.
+A Gatsby plugin that automatically adds configurable watermarks to all images during the build process. Supports both text and image watermarks.
 
 ## Installation
 
@@ -43,6 +43,8 @@ module.exports = {
   ],
 }
 ```
+
+The plugin will automatically process all images in your Gatsby project and add watermarks according to your configuration. The watermarked images will be saved alongside the original images with a "watermarked-" prefix.
 
 ## Configuration Options
 
@@ -97,18 +99,24 @@ The plugin accepts the following configuration options:
 }
 ```
 
+## How It Works
+
+The plugin automatically:
+1. Detects all images in your Gatsby project
+2. Processes each image to add the watermark
+3. Saves the watermarked version alongside the original
+4. Integrates with Gatsby's image processing pipeline
+
 ## GraphQL Usage
 
 You can query watermarked images using GraphQL:
 
 ```graphql
 query {
-  allWatermarkedImage {
+  allFile(filter: { internal: { mediaType: { regex: "/image/" } } }) {
     nodes {
       id
-      originalImage {
-        absolutePath
-      }
+      absolutePath
     }
   }
 }

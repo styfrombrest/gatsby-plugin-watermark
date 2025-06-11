@@ -1,0 +1,33 @@
+{
+  "name": "gatsby-plugin-watermark",
+  "description": "A Gatsby plugin that automatically adds configurable watermarks to all images during the build process. Supports both text and image watermarks.",
+  "version": "1.0.0",
+  "author": "styfrombrest",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/styfrombrest/gatsby-plugin-watermark.git"
+  },
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin",
+    "watermark",
+    "image",
+    "sharp",
+    "typescript"
+  ],
+  "peerDependencies": {
+    "gatsby": "^5.0.0"
+  },
+  "dependencies": {
+    "sharp": "^0.32.1",
+    "gatsby-plugin-sharp": "^5.14.0",
+    "gatsby-source-filesystem": "^5.14.0",
+    "file-loader": "^6.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.24",
+    "@types/sharp": "^0.32.0",
+    "typescript": "^5.3.3"
+  }
+} 
