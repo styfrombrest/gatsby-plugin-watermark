@@ -1,7 +1,7 @@
 {
   "name": "gatsby-plugin-watermark",
-  "version": "1.0.0",
-  "description": "A Gatsby plugin that adds configurable watermarks to images during transformation",
+  "version": "1.0.1",
+  "description": "A Gatsby plugin that automatically adds configurable watermarks to all images during the build process. Supports both text and image watermarks.",
   "main": "dist/gatsby-node.js",
   "types": "dist/gatsby-node.d.ts",
   "scripts": {
